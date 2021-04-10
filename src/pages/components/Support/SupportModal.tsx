@@ -1,23 +1,17 @@
 import { Modal, FormLayout, TextField } from "@shopify/polaris";
 import { connect } from "react-redux";
 import * as React from "react";
-import { ActionCreator } from "../../state/ReduxUtils";
 import { RootState } from "../../state/RootReducer";
-import { hideModal } from "../Modal/ModalActions";
 import { useCallback, useState } from "react";
 import { useModal } from "../Modal/useModal";
 
 interface ReduxProps {
     modals: { [modalId: string]: boolean };
 }
-  
-interface DispatchProps {
-  hideModal: ActionCreator;
-}
 
 export const SUPPORT_MODAL_ID = "supportModal";
 
-const SupportModal = (props: ReduxProps & DispatchProps) => {
+const SupportModal = (props: ReduxProps) => {
     const { hideModal } = useModal(SUPPORT_MODAL_ID);
     const [supportSubject, setSupportSubject] = useState('');
     const [supportMessage, setSupportMessage] = useState('');
@@ -59,6 +53,6 @@ const SupportModal = (props: ReduxProps & DispatchProps) => {
   );
 };
 
-export default connect<ReduxProps, DispatchProps>(
+export default connect<ReduxProps>(
     (state: RootState) => ({ modals: state.modal.modals })
 )(SupportModal);
