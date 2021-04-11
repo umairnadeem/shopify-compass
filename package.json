@@ -1,7 +1,7 @@
 {
-  "name": "shopify-app-node",
+  "name": "shopify-compass",
   "version": "1.0.0",
-  "description": "Shopify's node app for CLI tool",
+  "description": "Shopify's premier app for order routing logic",
   "scripts": {
     "test": "jest",
     "oldDev": "cross-env NODE_ENV=development nodemon ./server/index.js --watch ./server/index.js",
@@ -9,19 +9,19 @@
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
     "oldStart": "cross-env NODE_ENV=production node ./server/index.js",
     "start": "NODE_ENV=production ts-node src/server/index.ts",
-    "prepare": "husky install",
+    "prepare": "",
     "style-fix": "prettier 'src/**/*' --write",
     "lint-fix": "eslint src --fix --cache",
     "fix": "npm run style-fix && npm run lint-fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Shopify/shopify-app-node.git"
+    "url": "git+https://github.com/umairnadeem/shopify-compass.git"
   },
-  "author": "Shopify Inc.",
+  "author": "Umair Nadeem",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shopify/shopify-app-node/issues"
+    "url": "https://github.com/umairnadeem/shopify-compass/issues"
   },
   "dependencies": {
     "@babel/core": "7.12.10",
