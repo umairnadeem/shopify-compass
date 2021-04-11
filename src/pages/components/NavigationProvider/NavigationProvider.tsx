@@ -33,6 +33,7 @@ const NavigationProvider: React.FC = (props: OwnProps): ReactElement => {
           {
             label: "Back to Shopify",
             icon: ArrowLeftMinor,
+            onClick: toggleMobileNavigationActive
           },
         ]}
       />
@@ -43,9 +44,7 @@ const NavigationProvider: React.FC = (props: OwnProps): ReactElement => {
           {
             label: "Global Order Router",
             icon: OrdersMajor,
-            onClick: () => {
-              // TODO
-            },
+            onClick: toggleMobileNavigationActive
           },
         ]}
         action={{
