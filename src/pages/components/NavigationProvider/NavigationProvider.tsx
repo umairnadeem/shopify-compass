@@ -4,13 +4,17 @@ import {
   OrdersMajor,
   ConversationMinor,
 } from "@shopify/polaris-icons";
-import React from "react";
+import React, { ReactElement } from "react";
 import { useState, useCallback } from "react";
 import SupportModal from "../Support/SupportModal";
 import { useModal } from "../../../common/Modal/useModal";
 import { SUPPORT_MODAL_ID } from "../Support/SupportModal";
 
-const NavigationProvider = ({ children }) => {
+interface OwnProps {
+  children: React.Component[];
+}
+
+const NavigationProvider: React.FC = (props: OwnProps): ReactElement => {
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false);
   const { showModal } = useModal(SUPPORT_MODAL_ID);
 
@@ -39,7 +43,9 @@ const NavigationProvider = ({ children }) => {
           {
             label: "Global Order Router",
             icon: OrdersMajor,
-            onClick: () => {},
+            onClick: () => {
+              // TODO
+            },
           },
         ]}
         action={{
@@ -66,7 +72,7 @@ const NavigationProvider = ({ children }) => {
       onNavigationDismiss={toggleMobileNavigationActive}
     >
       <SupportModal />
-      {children}
+      {props.children}
     </Frame>
   );
 };

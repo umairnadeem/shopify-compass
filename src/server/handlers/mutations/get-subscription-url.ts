@@ -1,7 +1,8 @@
 import "isomorphic-fetch";
-import { gql } from "apollo-boost";
+import { DocumentNode, gql } from "apollo-boost";
+import { Context } from "koa";
 
-export function RECURRING_CREATE(url) {
+export function RECURRING_CREATE(url: string): DocumentNode {
   return gql`
     mutation {
       appSubscriptionCreate(
@@ -38,7 +39,7 @@ export function RECURRING_CREATE(url) {
     }`;
 }
 
-export const getSubscriptionUrl = async (ctx) => {
+export const getSubscriptionUrl = async (ctx: Context): Promise<void> => {
   const { client } = ctx;
   const confirmationUrl = await client
     .mutate({

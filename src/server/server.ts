@@ -46,7 +46,7 @@ app.prepare().then(async () => {
           accessToken,
           path: "/webhooks",
           topic: "APP_UNINSTALLED",
-          webhookHandler: async (topic, shop, body) => {
+          webhookHandler: async (topic, shop) => {
             delete ACTIVE_SHOPIFY_SHOPS[shop];
           },
         });
@@ -70,7 +70,7 @@ app.prepare().then(async () => {
   };
 
   router.get("/", async (ctx) => {
-    const shop = ctx.query.shop;
+    const shop = String(ctx.query.shop);
 
     // This shop hasn't been seen yet, go through OAuth to create a session
     if (ACTIVE_SHOPIFY_SHOPS[shop] === undefined) {
@@ -92,7 +92,7 @@ app.prepare().then(async () => {
   router.post(
     "/graphql",
     verifyRequest({ returnHeader: true }),
-    async (ctx, next) => {
+    async (ctx) => {
       await Shopify.Utils.graphqlProxy(ctx.req, ctx.res);
     }
   );

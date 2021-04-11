@@ -7,7 +7,7 @@ import { authenticatedFetch } from "@shopify/app-bridge-utils";
 import { Redirect } from "@shopify/app-bridge/actions";
 import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
-import React from "react";
+import React, { ReactElement } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "../common/state/store";
 
@@ -55,7 +55,7 @@ function MyProvider(props) {
 }
 
 class MyApp extends App {
-  render() {
+  render(): ReactElement {
     //@ts-ignore
     const { Component, pageProps, shopOrigin } = this.props;
     return (

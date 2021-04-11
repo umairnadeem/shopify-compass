@@ -1,11 +1,11 @@
 import { Page } from "@shopify/polaris";
-import React from "react";
+import React, { ReactElement } from "react";
 import NavigationProvider from "./components/NavigationProvider/NavigationProvider";
 
-const Index = () => {
+const Index: React.FC = (): ReactElement => {
   return (
     <NavigationProvider>
-      <Page title="Shopify Compass"></Page>
+      <Page title="Shopify Compass" />
     </NavigationProvider>
   );
 };

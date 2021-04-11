@@ -10,7 +10,9 @@
     "oldStart": "cross-env NODE_ENV=production node ./server/index.js",
     "start": "NODE_ENV=production ts-node src/server/index.ts",
     "prepare": "husky install",
-    "style-fix": "prettier 'src/**/*' --write"
+    "style-fix": "prettier 'src/**/*' --write",
+    "lint-fix": "eslint src --fix --cache",
+    "fix": "npm run style-fix && npm run lint-fix"
   },
   "repository": {
     "type": "git",
@@ -52,11 +54,17 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.12.10",
     "@babel/preset-stage-3": "^7.0.0",
+    "@types/koa": "^2.13.1",
+    "@types/koa-router": "^7.4.1",
     "@types/lodash": "^4.14.168",
+    "@typescript-eslint/eslint-plugin": "^4.21.0",
+    "@typescript-eslint/parser": "^4.21.0",
     "babel-jest": "26.6.3",
     "babel-register": "^6.26.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
+    "eslint": "^7.24.0",
+    "eslint-plugin-shopify": "^35.1.0",
     "husky": "^6.0.0",
     "jest": "26.6.3",
     "lint-staged": "^10.5.3",

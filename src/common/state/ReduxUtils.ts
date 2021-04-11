@@ -5,11 +5,9 @@ import { ThunkAction } from "redux-thunk";
 
 import { RootState } from "./RootReducer";
 
-export type ActionCreator = (...args: any[]) => AnyAction;
-
 export interface Thunk {
-  (...args: any[]): ThunkAction<void, RootState, void, Action>;
-  <R>(...args: any[]): ThunkAction<R, RootState, void, Action>;
+  (...args: unknown[]): ThunkAction<void, RootState, void, Action>;
+  <R>(...args: unknown[]): ThunkAction<R, RootState, void, Action>;
 }
 
 export function createActionCreator<T1>(
@@ -23,7 +21,7 @@ export function createActionCreator<T1>(
     };
   };
 }
-export type ReducerState<S = any, A extends Action<any> = AnyAction> = (
+export type ReducerState<S = unknown, A extends Action<unknown> = AnyAction> = (
   state: S,
   action: A
 ) => S;
@@ -39,11 +37,8 @@ const simpleReducerCase = (state, action) => ({
   ...state,
   ...omit(["type"], action),
 });
-export const handleSimpleReducerUpdates = <S extends object>(
+
+export const handleSimpleReducerUpdates = <S>(
   actionTypes: string[]
-) =>
-  fromPairs(
-    actionTypes.map((actionType) => [actionType, simpleReducerCase]) as Array<
-      [string, Reducer<S>]
-    >
-  );
+): Dictionary<Reducer<S>> =>
+  fromPairs(actionTypes.map((actionType) => [actionType, simpleReducerCase]));
