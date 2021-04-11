@@ -13,7 +13,10 @@ export interface Thunk {
 }
 
 export function createActionCreator(type: string): () => AnyAction;
-export function createActionCreator<T1>(type: string, name1?: string): (a1: T1) => AnyAction;
+export function createActionCreator<T1>(
+  type: string,
+  name1?: string
+): (a1: T1) => AnyAction;
 export function createActionCreator<T1, T2>(
   type: string,
   name1?: string,
@@ -38,17 +41,27 @@ export function createActionCreator<T1, T2, T3>(
     return action;
   };
 }
-export type ReducerState<S = any, A extends Action<any> = AnyAction> = (state: S, action: A) => S;
+export type ReducerState<S = any, A extends Action<any> = AnyAction> = (
+  state: S,
+  action: A
+) => S;
 export type ReducerDictionary<S> = Dictionary<ReducerState<S>>;
 
-export const createReducer = <S>(initialState: S, reducerDict: ReducerDictionary<S>): Reducer<S> => (
-  state = initialState,
-  action: AnyAction
-) => (reducerDict[action.type] ? reducerDict[action.type](state, action) : state);
+export const createReducer = <S>(
+  initialState: S,
+  reducerDict: ReducerDictionary<S>
+): Reducer<S> => (state = initialState, action: AnyAction) =>
+  reducerDict[action.type] ? reducerDict[action.type](state, action) : state;
 
 const simpleReducerCase = (state, action) => ({
   ...state,
   ...omit(["type"], action),
 });
-export const handleSimpleReducerUpdates = <S extends object>(actionTypes: string[]) =>
-  fromPairs(actionTypes.map((actionType) => [actionType, simpleReducerCase]) as Array<[string, Reducer<S>]>);
+export const handleSimpleReducerUpdates = <S extends object>(
+  actionTypes: string[]
+) =>
+  fromPairs(
+    actionTypes.map((actionType) => [actionType, simpleReducerCase]) as Array<
+      [string, Reducer<S>]
+    >
+  );

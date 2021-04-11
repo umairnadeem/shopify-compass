@@ -63,7 +63,7 @@ class MyApp extends App {
         <Provider
           config={{
             //@ts-ignore
-            apiKey: API_KEY, 
+            apiKey: API_KEY,
             shopOrigin: shopOrigin,
             forceRedirect: true,
           }}

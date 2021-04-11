@@ -7,9 +7,10 @@
     "oldDev": "cross-env NODE_ENV=development nodemon ./server/index.js --watch ./server/index.js",
     "dev": "NODE_ENV=development ts-node src/server/index.ts",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
-    "start": "cross-env NODE_ENV=production node ./server/index.js",
+    "oldStart": "cross-env NODE_ENV=production node ./server/index.js",
+    "start": "NODE_ENV=production ts-node src/server/index.ts",
     "prepare": "husky install",
-    "style-fix": "prettier 'pages/**/*' --write"
+    "style-fix": "prettier 'src/**/*' --write"
   },
   "repository": {
     "type": "git",

@@ -1,5 +1,9 @@
 import { ModalActionTypes } from "./ModalActions";
-import { createReducer, ReducerDictionary, ReducerState } from "../../state/ReduxUtils";
+import {
+  createReducer,
+  ReducerDictionary,
+  ReducerState,
+} from "../../state/ReduxUtils";
 
 export interface ModalState {
   modals: { [modalId: string]: boolean };
@@ -20,4 +24,7 @@ const reducers: ReducerDictionary<ModalState> = {
   [ModalActionTypes.HIDE_MODAL]: modalReducerFunc,
 };
 
-export const modalReducer = createReducer<ModalState>(modalInitialState, reducers);
+export const modalReducer = createReducer<ModalState>(
+  modalInitialState,
+  reducers
+);

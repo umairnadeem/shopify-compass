@@ -1,10 +1,14 @@
 import { Navigation, TopBar, Frame } from "@shopify/polaris";
-import { ArrowLeftMinor, OrdersMajor, ConversationMinor} from '@shopify/polaris-icons';
+import {
+  ArrowLeftMinor,
+  OrdersMajor,
+  ConversationMinor,
+} from "@shopify/polaris-icons";
 import React from "react";
 import { useState, useCallback } from "react";
 import SupportModal from "../Support/SupportModal";
 import { useModal } from "../Modal/useModal";
-import { SUPPORT_MODAL_ID} from "../Support/SupportModal";
+import { SUPPORT_MODAL_ID } from "../Support/SupportModal";
 
 const NavigationProvider = ({ children }) => {
   const [mobileNavigationActive, setMobileNavigationActive] = useState(false);
@@ -18,14 +22,13 @@ const NavigationProvider = ({ children }) => {
     []
   );
 
-
   const navigationMarkup = (
     <Navigation location="/">
       <Navigation.Section
         items={[
           {
             label: "Back to Shopify",
-            icon: ArrowLeftMinor
+            icon: ArrowLeftMinor,
           },
         ]}
       />
@@ -62,7 +65,7 @@ const NavigationProvider = ({ children }) => {
       showMobileNavigation={mobileNavigationActive}
       onNavigationDismiss={toggleMobileNavigationActive}
     >
-      <SupportModal/>
+      <SupportModal />
       {children}
     </Frame>
   );

@@ -6,31 +6,31 @@ import { useCallback, useState } from "react";
 import { useModal } from "../Modal/useModal";
 
 interface ReduxProps {
-    modals: { [modalId: string]: boolean };
+  modals: { [modalId: string]: boolean };
 }
 
 export const SUPPORT_MODAL_ID = "supportModal";
 
 const SupportModal = (props: ReduxProps) => {
-    const { hideModal } = useModal(SUPPORT_MODAL_ID);
-    const [supportSubject, setSupportSubject] = useState('');
-    const [supportMessage, setSupportMessage] = useState('');
-    const handleSubjectChange = useCallback(
-        (value) => setSupportSubject(value),
-        [],
-      );
-      const handleMessageChange = useCallback(
-        (value) => setSupportMessage(value),
-        [],
-      );
+  const { hideModal } = useModal(SUPPORT_MODAL_ID);
+  const [supportSubject, setSupportSubject] = useState("");
+  const [supportMessage, setSupportMessage] = useState("");
+  const handleSubjectChange = useCallback(
+    (value) => setSupportSubject(value),
+    []
+  );
+  const handleMessageChange = useCallback(
+    (value) => setSupportMessage(value),
+    []
+  );
 
-    return (
+  return (
     <Modal
       open={props.modals[SUPPORT_MODAL_ID]}
       onClose={hideModal}
       title="Contact support"
       primaryAction={{
-        content: 'Send',
+        content: "Send",
         onAction: hideModal,
       }}
     >
@@ -53,6 +53,6 @@ const SupportModal = (props: ReduxProps) => {
   );
 };
 
-export default connect<ReduxProps>(
-    (state: RootState) => ({ modals: state.modal.modals })
-)(SupportModal);
+export default connect<ReduxProps>((state: RootState) => ({
+  modals: state.modal.modals,
+}))(SupportModal);
