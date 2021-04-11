@@ -3,7 +3,7 @@ import {
   modalInitialState,
   modalReducer,
   ModalState,
-} from "../components/Modal/ModalReducer";
+} from "../Modal/ModalReducer";
 
 export interface RootState {
   modal: ModalState;

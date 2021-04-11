@@ -7,7 +7,7 @@ import {
 import React from "react";
 import { useState, useCallback } from "react";
 import SupportModal from "../Support/SupportModal";
-import { useModal } from "../Modal/useModal";
+import { useModal } from "../../../common/Modal/useModal";
 import { SUPPORT_MODAL_ID } from "../Support/SupportModal";
 
 const NavigationProvider = ({ children }) => {

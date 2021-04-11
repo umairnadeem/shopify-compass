@@ -9,7 +9,7 @@ import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
 import React from "react";
 import { Provider as ReduxProvider } from "react-redux";
-import store from "./state/store";
+import store from "../common/state/store";
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);

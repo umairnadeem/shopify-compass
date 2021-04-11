@@ -1,17 +1,11 @@
-import { Navigation, TopBar, Frame, Page } from "@shopify/polaris";
-import {
-  ArrowLeftMinor,
-  OrdersMajor,
-  ConversationMinor,
-} from "@shopify/polaris-icons";
+import { Page } from "@shopify/polaris";
 import React from "react";
-import { useState, useCallback } from "react";
 import NavigationProvider from "./components/NavigationProvider/NavigationProvider";
 
 const Index = () => {
   return (
     <NavigationProvider>
-      <Page title="bruh"></Page>
+      <Page title="Shopify Compass"></Page>
     </NavigationProvider>
   );
 };

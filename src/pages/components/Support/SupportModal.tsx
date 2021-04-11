@@ -1,9 +1,9 @@
 import { Modal, FormLayout, TextField } from "@shopify/polaris";
 import { connect } from "react-redux";
 import * as React from "react";
-import { RootState } from "../../state/RootReducer";
+import { RootState } from "../../../common/state/RootReducer";
 import { useCallback, useState } from "react";
-import { useModal } from "../Modal/useModal";
+import { useModal } from "../../../common/Modal/useModal";
 
 interface ReduxProps {
   modals: { [modalId: string]: boolean };

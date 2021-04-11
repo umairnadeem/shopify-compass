@@ -1,5 +1,5 @@
 import { Dictionary } from "lodash";
-import { compact, fromPairs, omit } from "lodash/fp";
+import { fromPairs, omit } from "lodash/fp";
 import { AnyAction, Reducer, Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
@@ -12,33 +12,15 @@ export interface Thunk {
   <R>(...args: any[]): ThunkAction<R, RootState, void, Action>;
 }
 
-export function createActionCreator(type: string): () => AnyAction;
 export function createActionCreator<T1>(
   type: string,
-  name1?: string
-): (a1: T1) => AnyAction;
-export function createActionCreator<T1, T2>(
-  type: string,
-  name1?: string,
-  name2?: string
-): (a1: T1, a2: T2) => AnyAction;
-export function createActionCreator<T1, T2, T3>(
-  type: string,
-  name1?: string,
-  name2?: string,
-  name3?: string
-): (a1: T1, a2: T2, a3: T3) => AnyAction;
-export function createActionCreator<T1, T2, T3>(
-  type: string,
-  name1?: string,
-  name2?: string,
-  name3?: string
-): (a1: T1, a2: T2, a3: T3) => AnyAction {
-  const argNames = compact([name1, name2, name3]);
-  return (...args: [T1, T2, T3]) => {
-    const action = { type };
-    argNames.forEach((_, i) => (action[argNames[i]] = args[i]));
-    return action;
+  key: string
+): (a1: T1) => AnyAction {
+  return (value) => {
+    return {
+      type,
+      [key]: value,
+    };
   };
 }
 export type ReducerState<S = any, A extends Action<any> = AnyAction> = (
