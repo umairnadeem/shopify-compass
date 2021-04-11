@@ -1,4 +1,4 @@
-import { createActionCreator } from "../../state/ReduxUtils";
+import { createActionCreator } from "../state/ReduxUtils";
 
 export enum ModalActionTypes {
   SHOW_MODAL = "SHOW_MODAL",

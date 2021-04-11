@@ -1,7 +1,7 @@
 import { ModalActionTypes } from "./ModalActions";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../state/RootReducer";
+import { RootState } from "../state/RootReducer";
 
 export const useModal = (id: string) => {
   const dispatch = useDispatch();

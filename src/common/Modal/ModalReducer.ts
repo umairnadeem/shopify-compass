@@ -3,7 +3,7 @@ import {
   createReducer,
   ReducerDictionary,
   ReducerState,
-} from "../../state/ReduxUtils";
+} from "../state/ReduxUtils";
 
 export interface ModalState {
   modals: { [modalId: string]: boolean };
