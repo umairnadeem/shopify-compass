@@ -4,4 +4,5 @@ require("@babel/register")({
 });
 
 // Import the rest of our application.
-export import server = require("./server");
+ import * as server from "./server";
+ export default server;
