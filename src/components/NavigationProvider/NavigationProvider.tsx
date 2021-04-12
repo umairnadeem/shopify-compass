@@ -7,7 +7,7 @@ import {
 import React, { ReactElement } from "react";
 import { useState, useCallback } from "react";
 import SupportModal from "../Support/SupportModal";
-import { useModal } from "../../../common/Modal/useModal";
+import { useModal } from "../../common/Modal/useModal";
 import { SUPPORT_MODAL_ID } from "../Support/SupportModal";
 
 interface OwnProps {
@@ -33,7 +33,7 @@ const NavigationProvider: React.FC = (props: OwnProps): ReactElement => {
           {
             label: "Back to Shopify",
             icon: ArrowLeftMinor,
-            onClick: toggleMobileNavigationActive
+            onClick: toggleMobileNavigationActive,
           },
         ]}
       />
@@ -42,9 +42,10 @@ const NavigationProvider: React.FC = (props: OwnProps): ReactElement => {
         title="Compass App"
         items={[
           {
+            url: "/GlobalOrderRouter",
             label: "Global Order Router",
             icon: OrdersMajor,
-            onClick: toggleMobileNavigationActive
+            onClick: toggleMobileNavigationActive,
           },
         ]}
         action={{

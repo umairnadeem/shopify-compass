@@ -1,13 +1,40 @@
-import { Page } from "@shopify/polaris";
-import React, { ReactElement } from "react";
-import NavigationProvider from "./components/NavigationProvider/NavigationProvider";
+import { Page, Card, Tabs } from "@shopify/polaris";
+import React, { ReactElement, useCallback, useState } from "react";
+import Rules from "../components/Rules";
 
-const Index: React.FC = (): ReactElement => {
+const tabs = [
+  {
+    id: "rules",
+    content: "Rules",
+    accessibilityLabel: "Rules",
+    panelID: "rules",
+  },
+  {
+    id: "settings",
+    content: "Settings",
+    accessibilityLabel: "Settings",
+    panelID: "settings",
+  },
+];
+
+const tabComponents = [<Rules key={0} />];
+
+const GlobalOrderRouter: React.FC = (): ReactElement => {
+  const [selected, setSelected] = useState(0);
+
+  const handleTabChange = useCallback(
+    (selectedTabIndex) => setSelected(selectedTabIndex),
+    []
+  );
+
   return (
-    <NavigationProvider>
-      <Page title="Shopify Compass" />
-    </NavigationProvider>
+    <Page narrowWidth title="Global Order Router">
+      <Card>
+        <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} />
+        {tabComponents[selected]}
+      </Card>
+    </Page>
   );
 };
 
-export default Index;
+export default GlobalOrderRouter;

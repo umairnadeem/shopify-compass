@@ -31,5 +31,5 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ]
+, "src/pages/global-order-router.jsx"  ]
 }

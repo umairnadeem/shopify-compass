@@ -10,6 +10,7 @@ import translations from "@shopify/polaris/locales/en.json";
 import React, { ReactElement } from "react";
 import { Provider as ReduxProvider } from "react-redux";
 import store from "../common/state/store";
+import ClientRouter from "../components/ClientRouter";
 
 function userLoggedInFetch(app) {
   const fetchFunction = authenticatedFetch(app);
@@ -59,18 +60,21 @@ class MyApp extends App {
     //@ts-ignore
     const { Component, pageProps, shopOrigin } = this.props;
     return (
-      <AppProvider i18n={translations}>
-        <Provider
-          config={{
-            //@ts-ignore
-            apiKey: API_KEY,
-            shopOrigin: shopOrigin,
-            forceRedirect: true,
-          }}
-        >
-          <MyProvider Component={Component} {...pageProps} />
-        </Provider>
-      </AppProvider>
+      <>
+        <AppProvider i18n={translations}>
+          <Provider
+            config={{
+              //@ts-ignore
+              apiKey: API_KEY,
+              shopOrigin: shopOrigin,
+              forceRedirect: true,
+            }}
+          >
+            <ClientRouter />
+            <MyProvider Component={Component} {...pageProps} />
+          </Provider>
+        </AppProvider>
+      </>
     );
   }
 }
