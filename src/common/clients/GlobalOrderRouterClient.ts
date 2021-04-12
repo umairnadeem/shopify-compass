@@ -14,12 +14,7 @@ export class GlobalOrderRouterClient extends ApiClient {
   }
 
   public async getRules(storeName: string): Promise<Rule[]> {
-    return new Promise((resolve) => {
-      setTimeout(
-        () =>
-          resolve([{ name: "bruh" }, { name: "bruh2" }, { name: storeName }]),
-        3000
-      );
-    });
+    await this.delay(5000);
+    return [{ name: "bruh" }, { name: "bruh2" }, { name: storeName }];
   }
 }

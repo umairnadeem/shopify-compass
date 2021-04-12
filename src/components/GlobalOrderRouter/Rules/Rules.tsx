@@ -8,23 +8,31 @@ import { loadRules } from "./RulesActions";
 
 interface ReduxProps {
   rules: Rule[];
+  shopOrigin: string;
 }
 
 interface DispatchProps {
   loadRules: Thunk;
 }
 
-const Rules: React.FC<ReduxProps> = ({ rules }): ReactElement => {
+const Rules: React.FC<ReduxProps & DispatchProps> = ({
+  rules,
+  shopOrigin,
+  loadRules,
+}): ReactElement => {
   useEffect(() => {
-    loadRules("bruh");
-  });
+    loadRules(shopOrigin);
+  }, [loadRules, shopOrigin]);
 
-  return <Card.Section title="Rules">{rules}</Card.Section>;
+  return (
+    <Card.Section title="Rules">{rules.length && rules[2].name}</Card.Section>
+  );
 };
 
 export default connect<ReduxProps, DispatchProps>(
   (state: RootState) => ({
     ...state.rules,
+    ...state.shop,
   }),
   { loadRules }
 )(Rules);

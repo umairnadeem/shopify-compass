@@ -21,6 +21,7 @@ export function createActionCreator<T1>(
     };
   };
 }
+
 export type ReducerState<S = unknown, A extends Action<unknown> = AnyAction> = (
   state: S,
   action: A

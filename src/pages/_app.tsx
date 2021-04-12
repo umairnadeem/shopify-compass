@@ -9,7 +9,7 @@ import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
 import React, { ReactElement } from "react";
 import { Provider as ReduxProvider } from "react-redux";
-import store from "../common/state/store";
+import { initializeStore } from "../common/state/store";
 import ClientRouter from "../components/ClientRouter";
 
 function userLoggedInFetch(app) {
@@ -44,11 +44,11 @@ function MyProvider(props) {
     },
   });
 
-  const Component = props.Component;
+  const { Component, shopOrigin } = props;
 
   return (
     <ApolloProvider client={client}>
-      <ReduxProvider store={store}>
+      <ReduxProvider store={initializeStore({ shop: { shopOrigin } })}>
         <Component {...props} />
       </ReduxProvider>
     </ApolloProvider>
@@ -60,21 +60,23 @@ class MyApp extends App {
     //@ts-ignore
     const { Component, pageProps, shopOrigin } = this.props;
     return (
-      <>
-        <AppProvider i18n={translations}>
-          <Provider
-            config={{
-              //@ts-ignore
-              apiKey: API_KEY,
-              shopOrigin: shopOrigin,
-              forceRedirect: true,
-            }}
-          >
-            <ClientRouter />
-            <MyProvider Component={Component} {...pageProps} />
-          </Provider>
-        </AppProvider>
-      </>
+      <AppProvider i18n={translations}>
+        <Provider
+          config={{
+            //@ts-ignore
+            apiKey: API_KEY,
+            shopOrigin: shopOrigin,
+            forceRedirect: true,
+          }}
+        >
+          <ClientRouter />
+          <MyProvider
+            Component={Component}
+            {...pageProps}
+            shopOrigin={shopOrigin}
+          />
+        </Provider>
+      </AppProvider>
     );
   }
 }

@@ -1,6 +1,6 @@
 import { Page, Card, Tabs } from "@shopify/polaris";
 import React, { ReactElement, useCallback, useState } from "react";
-import Rules from "../components/Rules";
+import Rules from "../components/GlobalOrderRouter/Rules/Rules";
 
 const tabs = [
   {
