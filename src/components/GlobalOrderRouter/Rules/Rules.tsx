@@ -1,4 +1,4 @@
-import { Card } from "@shopify/polaris";
+import { Card, Frame, Loading } from "@shopify/polaris";
 import React, { ReactElement, useEffect } from "react";
 import { connect } from "react-redux";
 import { Thunk } from "../../../common/state/ReduxUtils";
@@ -25,7 +25,16 @@ const Rules: React.FC<ReduxProps & DispatchProps> = ({
   }, [loadRules, shopOrigin]);
 
   return (
-    <Card.Section title="Rules">{rules.length && rules[2].name}</Card.Section>
+    // eslint-disable-next-line shopify/jsx-no-complex-expressions
+    <Card.Section title="Rules">
+      {rules.length ? (
+        rules[2].name
+      ) : (
+        <Frame>
+          <Loading />
+        </Frame>
+      )}
+    </Card.Section>
   );
 };
 
