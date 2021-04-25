@@ -6,17 +6,17 @@ export enum FulfillmentStatus {
   PENDING_FULFILLMENT = "PENDING_FULFILLMENT",
   OPEN = "OPEN",
   IN_PROGRESS = "IN_PROGRESS",
-  SCHEDULED = "SCHEDULED"
+  SCHEDULED = "SCHEDULED",
 }
 
 export interface ListGQL<TNode> {
   edges: {
     cursor: string;
-    node: TNode
+    node: TNode;
   }[];
-  pageInfo: {
-    hasNextPage: boolean;
-  }
+  pageInfo?: {
+    hasNextPage?: boolean;
+  };
 }
 
 export interface ShopifyOrderGQL {
@@ -27,6 +27,16 @@ export interface ShopifyOrderGQL {
     displayName: string;
   };
   displayFulfillmentStatus: FulfillmentStatus;
+  fulfillmentOrders: ListGQL<ShopifyFulfillmentOrderGQL>;
+}
+
+export interface ShopifyFulfillmentOrderGQL {
+  assignedLocation: {
+    name: string;
+    location: {
+      id: number;
+    };
+  };
 }
 
 export type ShopifyOrderListGQL = { orders: ListGQL<ShopifyOrderGQL> };
@@ -37,4 +47,5 @@ export interface ShopifyOrder {
   createdAt: string;
   customer: string;
   fulfillment: FulfillmentStatus;
+  locations: string[];
 }

@@ -1,4 +1,7 @@
-import { ReducerDictionary, createReducer } from "../../common/state/ReduxUtils";
+import {
+  ReducerDictionary,
+  createReducer,
+} from "../../common/state/ReduxUtils";
 import { LoadingActionTypes } from "./LoadingActions";
 
 export interface LoadingState {
@@ -6,7 +9,7 @@ export interface LoadingState {
 }
 
 export const loadingInitialState: LoadingState = {
-  loaders: []
+  loaders: [],
 };
 
 const reducers: ReducerDictionary<LoadingState> = {
@@ -20,4 +23,7 @@ const reducers: ReducerDictionary<LoadingState> = {
   }),
 };
 
-export const loadingReducer = createReducer<LoadingState>(loadingInitialState, reducers);
+export const loadingReducer = createReducer<LoadingState>(
+  loadingInitialState,
+  reducers
+);

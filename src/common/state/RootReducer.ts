@@ -1,11 +1,19 @@
 import { combineReducers } from "redux";
-import { ordersInitialState, ordersReducer, OrdersState } from "../../components/BulkLocationEditor/Orders/OrdersReducer";
+import {
+  ordersInitialState,
+  ordersReducer,
+  OrdersState,
+} from "../../components/BulkLocationEditor/Orders/OrdersReducer";
 import {
   rulesInitialState,
   rulesReducer,
   RulesState,
 } from "../../components/GlobalOrderRouter/Rules/RulesReducer";
-import { loadingInitialState, loadingReducer, LoadingState } from "../../components/WithLoader/LoadingReducer";
+import {
+  loadingInitialState,
+  loadingReducer,
+  LoadingState,
+} from "../../components/WithLoader/LoadingReducer";
 import {
   modalInitialState,
   modalReducer,
@@ -34,5 +42,5 @@ export const initialState: RootState = {
   modal: modalInitialState,
   rules: rulesInitialState,
   loading: loadingInitialState,
-  orders: ordersInitialState
+  orders: ordersInitialState,
 };

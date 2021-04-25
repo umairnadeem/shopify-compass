@@ -15,7 +15,7 @@ export const loadRules: Thunk = (storeName: string) => async (dispatch) => {
   dispatch({ type: RulesActionTypes.LOAD_RULES_START });
 
   const rules = await globalOrderRouterClient.getRules(storeName);
-  
+
   dispatch({ type: RulesActionTypes.LOAD_RULES_SUCCESS, rules });
   dispatch(clearLoader(rulesLoaderId));
 };

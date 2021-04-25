@@ -22,7 +22,7 @@ const BulkLocationEditor: React.FC = (): ReactElement => {
   );
 
   return (
-    <Page narrowWidth title="Orders">
+    <Page fullWidth title="Orders">
       <Frame>
         <Card>
           <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} />

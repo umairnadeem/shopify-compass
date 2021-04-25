@@ -5,8 +5,8 @@
   "scripts": {
     "test": "jest",
     "oldDev": "cross-env NODE_ENV=development nodemon ./server/index.js --watch ./server/index.js",
-    "dev": "NODE_ENV=development nodemon src/server/index.ts",
-    "serve": "npm run dev & npx localtunnel --port 8081 -s bruh2",
+    "dev": "NODE_ENV=development ts-node src/server/index.ts",
+    "serve": "npm run dev & npx localtunnel --port 8081 -s bruh3",
     "build": "NEXT_TELEMETRY_DISABLED=1 next build",
     "oldStart": "cross-env NODE_ENV=production node ./server/index.js",
     "start": "NODE_ENV=production ts-node src/server/index.ts",

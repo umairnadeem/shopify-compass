@@ -21,7 +21,6 @@ const Rules: React.FC<ReduxProps & DispatchProps> = ({
   shopOrigin,
   loadRules,
 }): ReactElement => {
-
   useEffect(() => {
     loadRules(shopOrigin);
   }, [loadRules, shopOrigin]);
@@ -29,9 +28,7 @@ const Rules: React.FC<ReduxProps & DispatchProps> = ({
   return (
     <Card.Section title="Rules">
       <WithLoader name={rulesLoaderId}>
-        <>
-          {rules[0]?.name}
-        </>
+        <>{rules[0]?.name}</>
       </WithLoader>
     </Card.Section>
   );

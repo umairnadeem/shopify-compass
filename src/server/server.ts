@@ -40,6 +40,7 @@ app.prepare().then(async () => {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
+        console.log(accessToken); // TODO del
 
         const response = await Shopify.Webhooks.Registry.register({
           shop,

@@ -1,18 +1,28 @@
 import { ShopifyOrder } from "../../../common/models/ShopifyOrder";
-import { createReducer, handleSimpleReducerUpdates, ReducerDictionary } from "../../../common/state/ReduxUtils";
+import {
+  createReducer,
+  handleSimpleReducerUpdates,
+  ReducerDictionary,
+} from "../../../common/state/ReduxUtils";
 import { OrdersActionTypes } from "./OrdersActions";
 
 export interface OrdersState {
-  orders: ShopifyOrder[]
+  orders: ShopifyOrder[];
 }
 
 export const ordersInitialState = {
-  orders: []
+  orders: [],
 };
 
 const reducers: ReducerDictionary<OrdersState> = {
-  ...handleSimpleReducerUpdates([OrdersActionTypes.LOAD_ORDERS_SUCCESS, OrdersActionTypes.LOAD_ORDERS_FAILURE, OrdersActionTypes.LOAD_ORDERS_START]),
+  ...handleSimpleReducerUpdates([
+    OrdersActionTypes.LOAD_ORDERS_SUCCESS,
+    OrdersActionTypes.LOAD_ORDERS_FAILURE,
+    OrdersActionTypes.LOAD_ORDERS_START,
+  ]),
 };
 
-
-export const ordersReducer = createReducer<OrdersState>(ordersInitialState, reducers);
+export const ordersReducer = createReducer<OrdersState>(
+  ordersInitialState,
+  reducers
+);
