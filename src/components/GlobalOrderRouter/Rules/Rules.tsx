@@ -3,8 +3,9 @@ import React, { ReactElement, useEffect } from "react";
 import { connect } from "react-redux";
 import { Thunk } from "../../../common/state/ReduxUtils";
 import { RootState } from "../../../common/state/RootReducer";
+import WithLoader from "../../WithLoader/WithLoader";
 import { Rule } from "./Rule";
-import { loadRules } from "./RulesActions";
+import { loadRules, rulesLoaderId } from "./RulesActions";
 
 interface ReduxProps {
   rules: Rule[];
@@ -20,20 +21,18 @@ const Rules: React.FC<ReduxProps & DispatchProps> = ({
   shopOrigin,
   loadRules,
 }): ReactElement => {
+
   useEffect(() => {
     loadRules(shopOrigin);
   }, [loadRules, shopOrigin]);
 
   return (
-    // eslint-disable-next-line shopify/jsx-no-complex-expressions
     <Card.Section title="Rules">
-      {rules.length ? (
-        rules[2].name
-      ) : (
-        <Frame>
-          <Loading />
-        </Frame>
-      )}
+      <WithLoader name={rulesLoaderId}>
+        <>
+          {rules[0]?.name}
+        </>
+      </WithLoader>
     </Card.Section>
   );
 };
