@@ -29,10 +29,11 @@ export interface ShopifyOrderGQL {
   displayFulfillmentStatus: FulfillmentStatus;
 }
 
-export type ShopifyOrderListGQL = ListGQL<ShopifyOrderGQL>;
+export type ShopifyOrderListGQL = { orders: ListGQL<ShopifyOrderGQL> };
 
 export interface ShopifyOrder {
   id: number;
+  name: string;
   createdAt: string;
   customer: string;
   fulfillment: FulfillmentStatus;

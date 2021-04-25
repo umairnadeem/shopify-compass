@@ -1,6 +1,6 @@
 import { Page, Card, Tabs, Frame } from "@shopify/polaris";
 import React, { ReactElement, useCallback, useState } from "react";
-import { Orders } from "../components/BulkLocationEditor/Orders/Orders";
+import Rules from "../components/GlobalOrderRouter/Rules/Rules";
 
 const tabs = [
   {
@@ -11,9 +11,9 @@ const tabs = [
   },
 ];
 
-const tabComponents = [<Orders key={0} />];
+const tabComponents = [<Rules key={0} />];
 
-const BulkLocationEditor: React.FC = (): ReactElement => {
+const GlobalOrderRouter: React.FC = (): ReactElement => {
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback(
@@ -22,7 +22,7 @@ const BulkLocationEditor: React.FC = (): ReactElement => {
   );
 
   return (
-    <Page narrowWidth title="Orders">
+    <Page narrowWidth title="Rules">
       <Frame>
         <Card>
           <Tabs tabs={tabs} selected={selected} onSelect={handleTabChange} />
@@ -33,4 +33,4 @@ const BulkLocationEditor: React.FC = (): ReactElement => {
   );
 };
 
-export default BulkLocationEditor;
+export default GlobalOrderRouter;

@@ -26,7 +26,7 @@ export const rootReducer = combineReducers<RootState>({
   modal: modalReducer,
   rules: rulesReducer,
   loading: loadingReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
 });
 
 export const initialState: RootState = {

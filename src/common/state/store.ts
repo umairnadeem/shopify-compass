@@ -6,8 +6,7 @@ const middleware: Middleware[] = [thunk];
 const middlewareSetup = applyMiddleware(...middleware);
 
 export const initializeStore = (initialProps?: Partial<RootState>): Store =>
-  createStore(
-    rootReducer,
+  createStore(rootReducer,
     { ...initialState, ...initialProps },
     middlewareSetup
   );
