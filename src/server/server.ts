@@ -6,6 +6,7 @@ import Shopify, { ApiVersion } from "@shopify/shopify-api";
 import Koa from "koa";
 import next from "next";
 import Router from "koa-router";
+import axios from "axios";
 
 dotenv.config();
 const port = parseInt(process.env.PORT, 10) || 8081;
@@ -95,6 +96,17 @@ app.prepare().then(async () => {
     verifyRequest({ returnHeader: true }),
     async (ctx) => {
       await Shopify.Utils.graphqlProxy(ctx.req, ctx.res);
+    }
+  );
+
+  router.get(
+    "/jsonl",
+    async (ctx) => {
+      const jsonlUrl = ctx.query.jsonlUrl as string;
+      const { data } = await axios.get(jsonlUrl);
+      const jsonData = data.split(/\r?\n/).filter(s => s.length).map(JSON.parse);
+      ctx.body = jsonData;
+      ctx.res.statusCode = 200;
     }
   );
 

@@ -1,10 +1,8 @@
-import { IndexTable, TextStyle, useIndexResourceState, SkeletonPage, Layout, Card, SkeletonBodyText, SkeletonDisplayText, TextContainer } from "@shopify/polaris";
-import React, { ReactElement } from "react";
-import { useQuery } from "react-apollo";
+import { SkeletonPage, Layout, Card, SkeletonBodyText, SkeletonDisplayText, TextContainer } from "@shopify/polaris";
+import React, { ReactElement, useEffect } from "react";
 import { useBulkQuery } from "../../../common/hooks/useBulkQuery";
-import { mapOrderList } from "../../../common/mappers/orderListMapper";
-import { ShopifyOrderListGQL } from "../../../common/models/ShopifyOrder";
 import { getOrders } from "../../../common/queries/getOrders";
+import { jsonlToJson } from "../../../common/util/jsonlUtils";
 import WithLoader from "../../WithLoader/WithLoader";
 
 const skeleton = <SkeletonPage primaryAction secondaryActions={2}>
@@ -55,7 +53,11 @@ const skeleton = <SkeletonPage primaryAction secondaryActions={2}>
 
 const OrderList2: React.FC = (): ReactElement => {
   const { loading, data, error, progress } = useBulkQuery(getOrders, 50);
-  
+  useEffect(() => {
+    if (data?.node?.url) {
+      jsonlToJson(data?.node?.url);
+    }
+  }, [data]);
   return (
     <WithLoader loading={loading} progress={progress} skeleton={skeleton}>
       <>
