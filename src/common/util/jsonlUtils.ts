@@ -1,6 +1,8 @@
-import axios from "axios"
+import axios from "axios";
 
-export const jsonlToJson = async (jsonlUrl: string): Promise<void> => {
-  const result = await axios.get("/jsonl", { params: { jsonlUrl } });
-  console.log("bruh", result);
-}
+export const jsonlToJson = async (jsonlUrl: string): Promise<any> => {
+  if (jsonlUrl) {
+    const { data } = await axios.get("/jsonl", { params: { jsonlUrl } });
+    return data;
+  }
+};

@@ -1,4 +1,3 @@
-import { ShopifyOrder } from "../models/ShopifyOrder";
 import { ApiClient } from "./ApiClient";
 
 const BASE_URL = "https://bruh.loca.lt/graphql";

@@ -49,3 +49,8 @@ export interface ShopifyOrder {
   fulfillment: FulfillmentStatus;
   locations: string[];
 }
+
+export type ShopifyBulkOrderListGQL = (
+  | ShopifyOrderGQL
+  | ShopifyFulfillmentOrderGQL
+)[];

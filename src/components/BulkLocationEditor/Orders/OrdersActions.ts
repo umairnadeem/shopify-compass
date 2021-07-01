@@ -1,5 +1,5 @@
 import { globalOrderRouterClient } from "../../../common/clients";
-import { createActionCreator, Thunk } from "../../../common/state/ReduxUtils";
+import { Thunk } from "../../../common/state/ReduxUtils";
 import { addLoader, clearLoader } from "../../WithLoader/LoadingActions";
 
 export enum OrdersActionTypes {

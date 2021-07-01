@@ -1,8 +1,11 @@
-import { gql } from "apollo-boost";
+import { DocumentNode, gql } from "apollo-boost";
+import esc from "js-string-escape";
 
-export const getOrders = gql`
+export const getOrders = (query: string): DocumentNode => gql`
   query {
-    orders(first: 50, reverse: true) {
+    orders(first: 50, reverse: true, query: ${
+      query ? `"${esc(query)}"` : null
+    }) {
       edges {
         cursor
         node {

@@ -20,7 +20,8 @@ export const WithLoader: React.FC<OwnProps> = ({
 }): React.ReactElement => {
   const loaders = useSelector((state: RootState) => state.loading.loaders);
   const showLoading = loaders.includes(name) || loading;
-  const showProgress = typeof progress !== "undefined" && progress < 100 && progress > 0;
+  const showProgress =
+    typeof progress !== "undefined" && progress < 100 && progress > 0;
   const showSkeleton =
     typeof skeleton !== "undefined" && (showProgress || showLoading);
   const isComplete = !(showLoading || showProgress || showSkeleton);

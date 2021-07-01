@@ -10,13 +10,13 @@ import {
   TextContainer,
 } from "@shopify/polaris";
 import React, { ReactElement } from "react";
-import { useQuery } from "react-apollo";
-import { mapOrderList } from "../../../common/mappers/orderListMapper";
-import { ShopifyOrderListGQL } from "../../../common/models/ShopifyOrder";
+import { useBulkQuery } from "../../../common/hooks/useBulkQuery";
+import { mapOrderData } from "../../../common/mappers/orderDataMapper";
+import { ShopifyBulkOrderListGQL } from "../../../common/models/ShopifyOrder";
 import { getOrders } from "../../../common/queries/getOrders";
 import WithLoader from "../../WithLoader/WithLoader";
 
-const skeleton = (
+const skeleton = ( // TODO fix
   <SkeletonPage primaryAction secondaryActions={2}>
     <Layout>
       <Layout.Section>
@@ -64,10 +64,21 @@ const skeleton = (
   </SkeletonPage>
 );
 
-const OrderList: React.FC = (): ReactElement => {
-  const { loading, data, error } = useQuery<ShopifyOrderListGQL>(getOrders);
-  console.log(data, error); // TODO del
-  const orders = data ? mapOrderList(data) : [];
+interface OwnProps {
+  query: string;
+  abortController: AbortController;
+}
+
+const OrderList: React.FC<OwnProps> = ({
+  query,
+  abortController,
+}): ReactElement => {
+  const { loading, data } = useBulkQuery<ShopifyBulkOrderListGQL>(
+    getOrders(query),
+    abortController,
+    50
+  );
+  const orders = data ? mapOrderData(data) : [];
   const resourceName = {
     singular: "order",
     plural: "orders",
@@ -122,7 +133,7 @@ const OrderList: React.FC = (): ReactElement => {
   );
 
   return (
-    <WithLoader loading={loading}>
+    <WithLoader loading={loading} skeleton={skeleton}>
       <IndexTable
         resourceName={resourceName}
         itemCount={orders.length}

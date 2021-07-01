@@ -1,4 +1,4 @@
-import { Card, Frame, Loading } from "@shopify/polaris";
+import { Card } from "@shopify/polaris";
 import React, { ReactElement, useEffect } from "react";
 import { connect } from "react-redux";
 import { Thunk } from "../../../common/state/ReduxUtils";

@@ -41,8 +41,6 @@ app.prepare().then(async () => {
         // Access token and shop available in ctx.state.shopify
         const { shop, accessToken, scope } = ctx.state.shopify;
         ACTIVE_SHOPIFY_SHOPS[shop] = scope;
-        console.log(accessToken); // TODO del
-
         const response = await Shopify.Webhooks.Registry.register({
           shop,
           accessToken,
@@ -99,16 +97,16 @@ app.prepare().then(async () => {
     }
   );
 
-  router.get(
-    "/jsonl",
-    async (ctx) => {
-      const jsonlUrl = ctx.query.jsonlUrl as string;
-      const { data } = await axios.get(jsonlUrl);
-      const jsonData = data.split(/\r?\n/).filter(s => s.length).map(JSON.parse);
-      ctx.body = jsonData;
-      ctx.res.statusCode = 200;
-    }
-  );
+  router.get("/jsonl", async (ctx) => {
+    const jsonlUrl = ctx.query.jsonlUrl as string;
+    const { data } = await axios.get(jsonlUrl);
+    const jsonData = data
+      .split(/\r?\n/)
+      .filter((s) => s.length)
+      .map(JSON.parse);
+    ctx.body = jsonData;
+    ctx.res.statusCode = 200;
+  });
 
   router.get("(/_next/static/.*)", handleRequest); // Static content is clear
   router.get("/_next/webpack-hmr", handleRequest); // Webpack content is clear

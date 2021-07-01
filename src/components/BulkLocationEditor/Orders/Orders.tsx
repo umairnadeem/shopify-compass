@@ -1,19 +1,41 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import React from "react";
 import { TextField, Card, Filters, Select } from "@shopify/polaris";
-import OrderList from "../OrderList/OrderList2";
+import OrderList from "../OrderList/OrderList";
+import { debounce } from "lodash";
 
 export const Orders: React.FC = (): React.ReactElement => {
+  const abortController = useRef(null);
   const [taggedWith, setTaggedWith] = useState("VIP");
   const [queryValue, setQueryValue] = useState(null);
+  const [debouncedQueryValue, setDebouncedQueryValue] = useState(queryValue);
   const [sortValue, setSortValue] = useState("today");
-
   const handleTaggedWithChange = useCallback(
     (value) => setTaggedWith(value),
     []
   );
+  const setQueryValueDebounced = useCallback(
+    debounce((value) => {
+      if (process.browser) {
+        abortController.current = new window.AbortController();
+      }
+      setDebouncedQueryValue(value);
+    }, 1000),
+    []
+  );
   const handleTaggedWithRemove = useCallback(() => setTaggedWith(null), []);
   const handleQueryValueRemove = useCallback(() => setQueryValue(null), []);
+  const handleQueryValueChange = useCallback(
+    (value = null) => {
+      if (abortController.current) {
+        abortController.current.abort();
+        console.log("aborted");
+      }
+      setQueryValue(value);
+      setQueryValueDebounced(value);
+    },
+    [setQueryValueDebounced]
+  );
   const handleClearAll = useCallback(() => {
     handleTaggedWithRemove();
     handleQueryValueRemove();
@@ -60,8 +82,8 @@ export const Orders: React.FC = (): React.ReactElement => {
             queryValue={queryValue}
             filters={filters}
             appliedFilters={appliedFilters}
-            onQueryChange={setQueryValue}
-            onQueryClear={handleQueryValueRemove}
+            onQueryChange={handleQueryValueChange}
+            onQueryClear={() => handleQueryValueChange(null)}
             onClearAll={handleClearAll}
           />
         </div>
@@ -75,7 +97,10 @@ export const Orders: React.FC = (): React.ReactElement => {
           />
         </div>
       </div>
-      <OrderList />
+      <OrderList
+        query={debouncedQueryValue}
+        abortController={abortController.current}
+      />
     </Card>
   );
 
